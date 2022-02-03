@@ -1,0 +1,8 @@
+# do not commit anything of Magento in this demo
+*
+
+!/.ddev
+!/.ddev/**
+!/docs
+!/docs/**
+!/README.md

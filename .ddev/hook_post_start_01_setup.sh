@@ -68,6 +68,7 @@ function install_magento() {
 			--repository-url=https://repo.magento.com/ \
 			magento/project-community-edition="$MAGENTO_VERSION" ./magento
 
+        rm ./magento/.gitignore;
 		mv ./magento/* /var/www/html;
 		mv ./magento/.* /var/www/html;
 		rm -Rf ./magento;

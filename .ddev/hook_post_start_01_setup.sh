@@ -69,7 +69,8 @@ function install_magento() {
 			magento/project-community-edition="$MAGENTO_VERSION" ./magento
 
 		mv ./magento/* /var/www/html;
-		rmdir ./magento;
+		mv ./magento/.* /var/www/html;
+		rm -Rf ./magento;
 
 		cd $MAGENTO_ROOT_DIR
 

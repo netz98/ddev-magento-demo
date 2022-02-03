@@ -8,6 +8,12 @@
 cd /var/www/html;
 
 rm -Rf \
+    .editorconfig \
+    .gitignore \
+    .htaccess \
+    .htaccess.sample \
+    .php_cs.dist \
+    .user.ini \
     app \
     auth.json.sample \
     bin \
@@ -20,6 +26,7 @@ rm -Rf \
     grunt-config.json.sample \
     Gruntfile.js.sample \
     lib \
+    magento \
     LICENSE.txt \
     LICENSE_AFL.txt \
     nginx.conf.sample \

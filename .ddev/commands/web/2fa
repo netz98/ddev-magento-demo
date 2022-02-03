@@ -1,0 +1,25 @@
+#!/bin/bash
+
+## Description: Generates a 2fa code
+## Usage: 2fa <username>
+## Example: "2fa admin"
+## ProjectTypes: magento2
+
+BACKEND_USER="$1";
+SECRET="admin"
+
+if [ -z "$BACKEND_USER" ]; then
+  BACKEND_USER="admin";
+fi
+
+if [ ! -x /usr/bin/oathtool ]; then
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install oathtool
+fi
+
+# Set secret for user
+php bin/magento -q security:tfa:google:set-secret admin $SECRET
+
+echo "------------"
+echo "Code: $(/usr/bin/oathtool --totp -b $SECRET)"
+echo "------------"
+

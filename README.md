@@ -24,9 +24,12 @@ ddev start
 
 ## Change Magento Version
 
-The Magento version is defined in the `.ddev/config.yaml` project config file.
+The Magento version is defined in `MAGENTO_VERSION` variable in the `.ddev/config.yaml` project config file.
 Change the variable **MAGENTO_USE_ELASTICSEARCH** to the Composer version contraint of the Magento version you like.
 If the Magento version does not require Elasticsearch during the installation, then also set the variable **MAGENTO_USE_ELASTICSEARCH** to *false* (default is "true").
+
+For older Magento versions you should also downgrade PHP (e.g. `ddev config --php-version=7.3`) 
+and Composer if not compatible. `ddev config --composer-version=1`
 
 ## 2FA
 

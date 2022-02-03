@@ -1,5 +1,9 @@
 # ddev Magento Demo Project
 
+This is a demo project with the purpose to demonstrate how the awesome ddev tool can be used to install a Magento system on a local machine. It should help to adopt ddev in your company for Magento development.
+
+ddev can also handle multiple PHP based projects at once.
+
 ## Technical Requirements
 
 Have ddev and Docker installed.
@@ -65,9 +69,20 @@ ddev snapshot restore
 
 # Restore latest snapshot
 ddev snapshot restore --latest
+
+# Remove project and all Docker volumes
+ddev rm --remove-data --omit-snapshot
 ```
 
 ## Debugging
+
+XDebug is supported out of the box in ddev.
+It can be enabled by `ddev xdebug on` and disabled by `ddev xdebug off`.
+Alternativly you can login into container an run the `enable_xdebug` and `disable_xdebug` scripts which does not restart the Docker containers.
+
+The project path has to be mapped in your debugger settings to `/var/www/html`.
+
+A brief description can be found here:
 
 https://ddev.readthedocs.io/en/stable/users/step-debugging/
 
@@ -88,3 +103,13 @@ Cleanup all files installed by Magento installation process.
 ```
 ddev wipe-magento-files
 ```
+
+## Useful ddev resources
+
+Official Manual: https://ddev.readthedocs.io/en/stable/
+
+Awesome ddev projects: https://github.com/drud/awesome-ddev
+
+Github repository: https://github.com/drud/ddev
+
+Additional services, tools, snippets, approaches.: https://github.com/drud/ddev-contrib

@@ -80,3 +80,11 @@ ddev config --mutagen-enabled=true
 ```
 
 If mutagen sync is already running on your host machine, then it's required to stop it before enabling the ddev Mutagen sync.
+
+## Cleanup
+
+Cleanup all files installed by Magento installation process.
+
+```
+ddev wipe-magento-files
+```

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+## Description: Wipe Magento files in demo
+## Usage: wipe-magento-files
+## Example: "wipe-magento-files"
+## ProjectTypes: magento2
+
+cd /var/www/html;
+
+rm -Rf \
+    app \
+    auth.json.sample \
+    bin \
+    CHANGELOG.md \
+    composer.json \
+    composer.lock \
+    COPYING.txt \
+    dev \
+    generated \
+    grunt-config.json.sample \
+    Gruntfile.js.sample \
+    lib \
+    LICENSE.txt \
+    LICENSE_AFL.txt \
+    nginx.conf.sample \
+    package.json.sample \
+    phpserver \
+    pub \
+    SECURITY.md \
+    setup \
+    var \
+    vendor \
+    ;
+ 

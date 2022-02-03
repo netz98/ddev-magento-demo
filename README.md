@@ -1,5 +1,7 @@
 # ddev Magento Demo Project
 
+![ddev Magento Demo Setup Banner](docs/images/ddev-Magento-Demo-Setup.gif)
+
 This is a demo project with the purpose to demonstrate how the awesome ddev tool can be used to install a Magento system on a local machine. It should help to adopt ddev in your company for Magento development.
 
 ddev can also handle multiple PHP based projects at once.

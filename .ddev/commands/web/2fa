@@ -13,7 +13,8 @@ if [ -z "$BACKEND_USER" ]; then
 fi
 
 if [ ! -x /usr/bin/oathtool ]; then
-    sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install oathtool
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -qy update;
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install oathtool;
 fi
 
 # Set secret for user

@@ -31,11 +31,17 @@ If the Magento version does not require Elasticsearch during the installation, t
 For older Magento versions you should also downgrade PHP (e.g. `ddev config --php-version=7.3`) 
 and Composer if not compatible. `ddev config --composer-version=1`
 
-## 2FA
+## Admin Login and 2FA
 
 The `Magento_TwoFactorAuth` modules is not disabled during the installation of Magento like in other tutorials.
 
 We have a `ddev 2fa` command which helps to generate a authentication code for a admin login.
+
+The default admin credentials are:
+
+Username: admin
+Password: Password123
+
 
 ## Important commands
 

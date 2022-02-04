@@ -18,7 +18,7 @@ if [ ! -x /usr/bin/oathtool ]; then
 fi
 
 # Set secret for user
-php bin/magento -q security:tfa:google:set-secret admin $SECRET
+php bin/magento -q security:tfa:google:set-secret "$BACKEND_USER" $SECRET
 
 echo "------------"
 echo "Code: $(/usr/bin/oathtool --totp -b $SECRET)"

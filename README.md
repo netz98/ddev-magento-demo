@@ -39,8 +39,8 @@ We have a `ddev 2fa` command which helps to generate a authentication code for a
 
 The default admin credentials are:
 
-Username: admin
-Password: Password123
+Username: admin  
+Password: Password123  
 
 
 ## Important commands

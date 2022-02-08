@@ -7,6 +7,13 @@ It is not a production setup.
 
 ddev can also handle multiple PHP based projects at once.
 
+The demo system is already pre-configured with this services:
+
+- Elasticsearch (search engine)
+- Kibana (dev tools for Elasticsearch)
+- MySQL (phpmyadmin provided by ddev)
+- Redis (session and cache)
+
 ## Technical Requirements
 
 Have ddev and Docker installed.

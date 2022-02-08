@@ -64,14 +64,16 @@ function install_magento() {
 		echo -e "> Initial Magento ${MAGENTO_VERSION} Setup ..."
 		echo -e "==========================================================${txtrst}"
 
-		composer --no-interaction create-project \
-			--repository-url=https://repo.magento.com/ \
-			magento/project-community-edition="$MAGENTO_VERSION" ./magento
+        if [ ! -f composer.json ]; then
+            composer --no-interaction create-project \
+                --repository-url=https://repo.magento.com/ \
+                magento/project-community-edition="$MAGENTO_VERSION" ./magento
 
-        rm ./magento/.gitignore;
-		mv ./magento/* /var/www/html;
-		mv ./magento/.* /var/www/html;
-		rm -Rf ./magento;
+            rm ./magento/.gitignore;
+            mv ./magento/* /var/www/html;
+            mv ./magento/.* /var/www/html;
+            rm -Rf ./magento;
+        fi
 
 		cd $MAGENTO_ROOT_DIR
 
@@ -100,6 +102,16 @@ function install_magento() {
 			"--admin-firstname=Armin"
 			"--admin-lastname=Admin"
 			"--admin-email=admin@example.com"
+            "--cache-backend=redis"
+            "--cache-backend-redis-server=redis"
+            "--cache-backend-redis-port=6379"
+            "--cache-backend-redis-db=0"
+            "--session-save=redis"
+            "--session-save-redis-host=redis"
+            "--session-save-redis-port=6379"
+            "--session-save-redis-log-level=3"
+            "--session-save-redis-db=1"
+            "--session-save-redis-disable-locking=1"
 		)
 
 		if [[ "$MAGENTO_USE_ELASTICSEARCH" == "true" ]]; then
@@ -116,7 +128,7 @@ function install_magento() {
 		command ${MAGENTO_SETUP_ARGS[*]}
 
     else
-		echo -en "${txtgrn}${check_mark} Magento already installed ${txtrst} \n"		
+		echo -en "${txtgrn}${check_mark} Magento already installed ${txtrst} \n"
 	fi
 }
 

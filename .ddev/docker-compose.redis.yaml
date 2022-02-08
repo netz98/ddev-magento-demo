@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+  redis: # This is the service name used when running ddev commands accepting the --service flag
+    container_name: ddev-${DDEV_SITENAME}-redis # This is the name of the container. It is recommended to follow the same name convention used in the main docker-compose.yml file.
+    image: redis:6
+    ports:
+      - 6379 # Redis is served from this port inside the container
+    labels:
+    # These labels ensure this service is discoverable by ddev
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME # This defines the host name the service should be accessible from. This will be sitename.ddev.local
+      - HTTP_EXPOSE=6379 # This defines the port the service should be accessible from at sitename.ddev.local
+    volumes: []
+  web:
+    links:
+      - redis:redis

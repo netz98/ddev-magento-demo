@@ -12,11 +12,11 @@ MAGENTO_ROOT_DIR="/var/www/html";
 
 
 function show_banner() {
-	echo -e "${bldcyn}=========================================================="
-	echo -e "> ddev Magento ${MAGENTO_VERSION} demo project by netz98 GmbH      "
-	echo -e "==========================================================${txtrst}"
-	echo ""
-	echo "... starting"
+    echo -e "${bldcyn}=========================================================="
+    echo -e "> ddev Magento ${MAGENTO_VERSION} demo project by netz98 GmbH      "
+    echo -e "==========================================================${txtrst}"
+    echo ""
+    echo "... starting"
 }
 
 function configure_composer_help() {
@@ -25,18 +25,18 @@ function configure_composer_help() {
     echo -e "==========================${txtrst}"
     echo ""
     echo -e "${txtylw}\$MAGENTO_REPO_USERNAME${txtrst} and ${txtylw}\$MAGENTO_REPO_PASSWORD${txtrst} environment variables are not set."
-	echo ""
-	echo -e "Edit ${txtpur}~/.ddev/global_config.yaml${txtrst} file and add your credentials there."
-	echo ""
-	echo "Example:"
     echo ""
-	echo -e "${bldcyn}web_environment:${txtrst}"
+    echo -e "Edit ${txtpur}~/.ddev/global_config.yaml${txtrst} file and add your credentials there."
+    echo ""
+    echo "Example:"
+    echo ""
+    echo -e "${bldcyn}web_environment:${txtrst}"
     echo -e "${bldcyn}- MAGENTO_REPO_USERNAME=<public-key>${txtrst}"
     echo -e "${bldcyn}- MAGENTO_REPO_PASSWORD=<private-key>${txtrst}"
-	echo ""
-	echo -e "Get your Magento authentication keys: ${txtblu}https://devdocs.magento.com/guides/v2.4/install-gde/prereq/connect-auth.html${txtrst}"
+    echo ""
+    echo -e "Get your Magento authentication keys: ${txtblu}https://devdocs.magento.com/guides/v2.4/install-gde/prereq/connect-auth.html${txtrst}"
     echo -e "More infos about the ddev configuration: ${txtblu}https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#providing-custom-environment-variables-to-a-container${txtrst}"
-	echo ""
+    echo ""
 
     exit 1
 }
@@ -59,10 +59,10 @@ function setup_composer() {
 }
 
 function install_magento() {
-	if [ ! -f "./app/etc/env.php" ]; then
-		echo -e "${bldcyn}=========================================================="
-		echo -e "> Initial Magento ${MAGENTO_VERSION} Setup ..."
-		echo -e "==========================================================${txtrst}"
+    if [ ! -f "./app/etc/env.php" ]; then
+        echo -e "${bldcyn}=========================================================="
+        echo -e "> Initial Magento ${MAGENTO_VERSION} Setup ..."
+        echo -e "==========================================================${txtrst}"
 
         if [ ! -f composer.json ]; then
             composer --no-interaction create-project \
@@ -75,33 +75,33 @@ function install_magento() {
             rm -Rf ./magento;
         fi
 
-		cd $MAGENTO_ROOT_DIR
+        cd $MAGENTO_ROOT_DIR
 
-		if [ -d "./generated" ]; then
-			rm -Rf ./generated
-		fi
+        if [ -d "./generated" ]; then
+            rm -Rf ./generated
+        fi
 
-		# build magento setup arguments
-		MAGENTO_SETUP_ARGS=(
-			"php" "bin/magento" "setup:install"
-			"--no-interaction"
-			"--db-host=db"
-			"--db-user=db"
-			"--db-password=db"
-			"--db-name=db"
-			"--cleanup-database"
-			"--backend-frontname=admin"
-			"--timezone=${TZ}"
-			"--currency=EUR"
-			"--base-url=${DDEV_PRIMARY_URL}"
-			"--use-rewrites=1"
-			"--use-secure=1"
-			"--use-secure-admin=1"
-			"--admin-user=admin"
-			"--admin-password=Password123"
-			"--admin-firstname=Armin"
-			"--admin-lastname=Admin"
-			"--admin-email=admin@example.com"
+        # build magento setup arguments
+        MAGENTO_SETUP_ARGS=(
+            "php" "bin/magento" "setup:install"
+            "--no-interaction"
+            "--db-host=db"
+            "--db-user=db"
+            "--db-password=db"
+            "--db-name=db"
+            "--cleanup-database"
+            "--backend-frontname=admin"
+            "--timezone=${TZ}"
+            "--currency=EUR"
+            "--base-url=${DDEV_PRIMARY_URL}"
+            "--use-rewrites=1"
+            "--use-secure=1"
+            "--use-secure-admin=1"
+            "--admin-user=admin"
+            "--admin-password=Password123"
+            "--admin-firstname=Armin"
+            "--admin-lastname=Admin"
+            "--admin-email=admin@example.com"
             "--cache-backend=redis"
             "--cache-backend-redis-server=redis"
             "--cache-backend-redis-port=6379"
@@ -112,28 +112,28 @@ function install_magento() {
             "--session-save-redis-log-level=3"
             "--session-save-redis-db=1"
             "--session-save-redis-disable-locking=1"
-		)
+        )
 
-		if [[ "$MAGENTO_USE_ELASTICSEARCH" == "true" ]]; then
-			# Configure Standard Magento Elasticsearch
-			MAGENTO_SETUP_ARGS+=(
-				"--search-engine=elasticsearch7"
-				"--elasticsearch-host=elasticsearch"
-				"--elasticsearch-port=9200"
-			)
-		fi
+        if [[ "$MAGENTO_USE_ELASTICSEARCH" == "true" ]]; then
+            # Configure Standard Magento Elasticsearch
+            MAGENTO_SETUP_ARGS+=(
+                "--search-engine=elasticsearch7"
+                "--elasticsearch-host=elasticsearch"
+                "--elasticsearch-port=9200"
+            )
+        fi
 
-		# Execute Magento installer based on setup arguments
-		#echo ${MAGENTO_SETUP_ARGS[*]}  # debug
-		command ${MAGENTO_SETUP_ARGS[*]}
+        # Execute Magento installer based on setup arguments
+        #echo ${MAGENTO_SETUP_ARGS[*]}  # debug
+        command ${MAGENTO_SETUP_ARGS[*]}
 
     else
-		echo -en "${txtgrn}${check_mark} Magento already installed ${txtrst} \n"
-	fi
+        echo -en "${txtgrn}${check_mark} Magento already installed ${txtrst} \n"
+    fi
 }
 
 function system_info() {
-	magerun2 sys:info
+    magerun2 sys:info
 }
 
 show_banner

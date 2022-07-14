@@ -65,7 +65,10 @@ function install_magento() {
         echo -e "==========================================================${txtrst}"
 
         if [ ! -f composer.json ]; then
+            # see: https://github.com/composer/composer/issues/10928#issuecomment-1181534484
+
             composer --no-interaction create-project \
+                --no-install \
                 --repository-url=https://repo.magento.com/ \
                 magento/project-community-edition="$MAGENTO_VERSION" ./magento
 
@@ -73,6 +76,12 @@ function install_magento() {
             mv ./magento/* /var/www/html;
             mv ./magento/.* /var/www/html;
             rm -Rf ./magento;
+
+            composer config "allow-plugins.dealerdirect/phpcodesniffer-composer-installer" true;
+            composer config "allow-plugins.laminas/laminas-dependency-plugin" true;
+            composer config "allow-plugins.magento/*" true;
+
+            composer install;
         fi
 
         cd $MAGENTO_ROOT_DIR

@@ -72,16 +72,14 @@ function install_magento() {
                 --repository-url=https://repo.magento.com/ \
                 magento/project-community-edition="$MAGENTO_VERSION" ./magento
 
+            composer -d ./magento config "allow-plugins.dealerdirect/phpcodesniffer-composer-installer" true;
+            composer -d ./magento config "allow-plugins.laminas/laminas-dependency-plugin" true;
+            composer -d ./magento config "allow-plugins.magento/*" true;
+            composer -d ./magento install;
             rm ./magento/.gitignore;
             mv ./magento/* /var/www/html;
             mv ./magento/.* /var/www/html;
             rm -Rf ./magento;
-
-            composer config "allow-plugins.dealerdirect/phpcodesniffer-composer-installer" true;
-            composer config "allow-plugins.laminas/laminas-dependency-plugin" true;
-            composer config "allow-plugins.magento/*" true;
-
-            composer install;
         fi
 
         cd $MAGENTO_ROOT_DIR

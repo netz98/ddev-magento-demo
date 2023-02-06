@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Description: Install sample data
+## Usage: install-sample-data
+## Example: "install-sample-data"
+## ProjectTypes: magento2
+
+cd /var/www/html;
+bin/magento sampledata:deploy
+bin/magento setup:upgrade
+

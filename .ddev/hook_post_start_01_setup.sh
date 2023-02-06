@@ -71,11 +71,11 @@ function install_magento() {
                 --no-install \
                 --repository-url=https://repo.magento.com/ \
                 magento/project-community-edition="$MAGENTO_VERSION" ./magento
-
-            composer -d ./magento config "allow-plugins.dealerdirect/phpcodesniffer-composer-installer" true;
-            composer -d ./magento config "allow-plugins.laminas/laminas-dependency-plugin" true;
-            composer -d ./magento config "allow-plugins.magento/*" true;
-            composer -d ./magento install;
+            composer config -d ./magento "allow-plugins.dealerdirect/phpcodesniffer-composer-installer" true;
+            composer config -d ./magento  "allow-plugins.dealerdirect/phpcodesniffer-composer-installer" true;
+            composer config -d ./magento "allow-plugins.laminas/laminas-dependency-plugin" true;
+            composer config -d ./magento "allow-plugins.magento/*" true;
+            composer install -d ./magento;
             rm ./magento/.gitignore;
             mv ./magento/* /var/www/html;
             mv ./magento/.* /var/www/html;

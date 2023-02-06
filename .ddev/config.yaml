@@ -1,7 +1,7 @@
 name: ddev-magento-demo
 type: magento2
 docroot: pub
-php_version: "7.4"
+php_version: "8.1"
 webserver_type: nginx-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -17,7 +17,7 @@ timezone: Europe/Berlin
 composer_version: "2.2.17"
 disable_settings_management: true
 web_environment:
-- MAGENTO_VERSION=2.4.4
+- MAGENTO_VERSION=2.4.5-p1
 - MAGENTO_USE_ELASTICSEARCH=true
 hooks:
   post-start:

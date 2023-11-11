@@ -9,10 +9,13 @@ ddev can also handle multiple PHP based projects at once.
 
 The demo system is already pre-configured with this services:
 
-- Elasticsearch (search engine)
-- Kibana (dev tools for Elasticsearch)
-- MySQL (phpmyadmin provided by ddev)
+- OpenSearch (search engine)
+- OpenSearch Dashboards
+- MySQL
 - Redis (session and cache)
+
+- Elasticsearch exists as disabled ddev service (search engine)
+- Kibana exists as disabled ddev service (dev tools for Elasticsearch)
 
 ## Technical Requirements
 
@@ -32,8 +35,8 @@ ddev start
 ## Change Magento Version
 
 The Magento version is defined in `MAGENTO_VERSION` variable in the `.ddev/config.yaml` project config file.
-Change the variable **MAGENTO_USE_ELASTICSEARCH** to the Composer version contraint of the Magento version you like.
-If the Magento version does not require Elasticsearch during the installation, then also set the variable **MAGENTO_USE_ELASTICSEARCH** to *false* (default is "true").
+Change the variable **MAGENTO_USE_OPENSEARCH** to the Composer version contraint of the Magento version you like.
+If the Magento version does not require OpenSearch during the installation, then also set the variable **MAGENTO_USE_OPENSEARCH** to *false* (default is "true").
 
 For older Magento versions you should also downgrade PHP (e.g. `ddev config --php-version=7.3`) 
 and Composer if not compatible. `ddev config --composer-version=1`

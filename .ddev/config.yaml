@@ -17,8 +17,9 @@ timezone: Europe/Berlin
 composer_version: "2.2.17"
 disable_settings_management: true
 web_environment:
-- MAGENTO_VERSION=2.4.5-p1
-- MAGENTO_USE_ELASTICSEARCH=true
+- MAGENTO_VERSION=2.4.6-p3
+- MAGENTO_USE_OPENSEARCH=true
+- MAGENTO_USE_ELASTICSEARCH=false
 hooks:
   post-start:
     - exec: bash .ddev/hook_post_start_01_setup.sh
@@ -98,7 +99,7 @@ hooks:
 # These values specify the destination directory for ddev ssh and the
 # directory in which commands passed into ddev exec are run.
 
-# omit_containers: [db, dba, ddev-ssh-agent]
+# omit_containers: [db, ddev-ssh-agent]
 # Currently only these containers are supported. Some containers can also be
 # omitted globally in the ~/.ddev/global_config.yaml. Note that if you omit
 # the "db" container, several standard features of ddev that access the

@@ -15,10 +15,10 @@ services:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
       - HTTP_EXPOSE=5601:5601
       - HTTPS_EXPOSE=5602:5601
-      - ELASTICSEARCH_HOSTS=http://ddev-${DDEV_PROJECT}-elasticsearch:9200
-      - SERVER_NAME=ddev-${DDEV_PROJECT}-elasticsearch
+      - ELASTICSEARCH_HOSTS=http://ddev-${DDEV_PROJECT}-opensearch:9200
+      - SERVER_NAME=ddev-${DDEV_PROJECT}-opensearch
     volumes:
       - '.:/mnt/ddev_config'
     depends_on:
-      - elasticsearch
+      - opensearch
 

@@ -1,0 +1,56 @@
+#ddev-generated
+version: '3.6'
+services:
+  opensearch:
+    container_name: ddev-${DDEV_SITENAME}-opensearch
+    build: ./opensearch
+    expose:
+      - "9200"
+    environment:
+      # disables installation of demo data
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      # disables security plugin
+      - "DISABLE_SECURITY_PLUGIN=true"
+      - cluster.name=docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=9200:9200
+      - HTTPS_EXPOSE=9201:9200
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    volumes:
+      - opensearch:/usr/share/opensearch/data
+      - ".:/mnt/ddev_config"
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    container_name: 'ddev-${DDEV_SITENAME}-opensearch-dashboards'
+    hostname: '${DDEV_SITENAME}-opensearch-dashboards'
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - OPENSEARCH_HOSTS=http://ddev-${DDEV_PROJECT}-opensearch:9200
+      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true" # disables security plugin
+      - SERVER_NAME=ddev-${DDEV_PROJECT}-opensearch
+      - HTTP_EXPOSE=5601:5601
+      - HTTPS_EXPOSE=5602:5601
+    expose:
+      # Expose port 5601 for web access to OpenSearch Dashboards
+      - '5601'
+      - '5602'
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    depends_on:
+      - opensearch
+
+  web:
+    depends_on:
+      - opensearch
+    links:
+      - 'opensearch:opensearch'
+
+volumes:
+  opensearch:

@@ -121,6 +121,14 @@ function install_magento() {
             "--session-save-redis-disable-locking=1"
         )
 
+        if [[ "$MAGENTO_USE_OPENSEARCH" == "true" ]]; then
+            # Configure Standard Magento Elasticsearch
+            MAGENTO_SETUP_ARGS+=(
+                "--search-engine=opensearch"
+                "--opensearch-host=opensearch"
+                "--opensearch-port=9200"
+            )
+        fi
         if [[ "$MAGENTO_USE_ELASTICSEARCH" == "true" ]]; then
             # Configure Standard Magento Elasticsearch
             MAGENTO_SETUP_ARGS+=(

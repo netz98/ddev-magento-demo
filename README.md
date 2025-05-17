@@ -40,7 +40,6 @@ ddev config global --web-environment-add MAGENTO_REPO_PASSWORD=<private-key>
 Replace `<public-key>` and `<private-key>` with your actual Magento Marketplace credentials. You can obtain your keys from the Magento Marketplace website.
 
 More information on setting global environment variables in ddev can be found [here](https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#global-environment-variables).
-```
 
 To prevent rate limiting issues, it's recommended to set also the variable `GITHUB_TOKEN` with your GitHub token.
 

@@ -19,6 +19,7 @@ fi
 
 # Set secret for user
 php bin/magento -q security:tfa:google:set-secret "$BACKEND_USER" $SECRET
+php bin/magento config:set twofactorauth/general/force_providers google
 
 echo "------------"
 echo "Code: $(/usr/bin/oathtool --totp -b $SECRET)"

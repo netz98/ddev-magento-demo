@@ -1,7 +1,7 @@
 name: ddev-magento-demo
 type: magento2
 docroot: pub
-php_version: "8.1"
+php_version: "8.4"
 webserver_type: nginx-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -9,15 +9,15 @@ xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 mariadb_version: ""
-mysql_version: "8.0"
+mysql_version: "8.4"
 nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
 timezone: Europe/Berlin
-composer_version: "2.2.17"
+composer_version: "2.8.8"
 disable_settings_management: true
 web_environment:
-- MAGENTO_VERSION=2.4.6-p3
+- MAGENTO_VERSION=2.4.8
 - MAGENTO_USE_OPENSEARCH=true
 - MAGENTO_USE_ELASTICSEARCH=false
 hooks:

@@ -5,7 +5,16 @@
 ## Example: "install-sample-data"
 ## ProjectTypes: magento2
 
-cd /var/www/html;
-bin/magento sampledata:deploy
-bin/magento setup:upgrade
+CURRENT_DIR=$(dirname "$0");
+source "/var/www/html/.ddev/bash/helpers/colors.sh";
+source "/var/www/html/.ddev/bash/lib/composer.sh";
 
+cd /var/www/html;
+
+setup_composer
+
+# Explicitly set COMPOSER_HOME for the sampledata:deploy command
+# DDEV's default COMPOSER_HOME in the web container is /var/www/.composer
+COMPOSER_HOME="$HOME/.composer" bin/magento sampledata:deploy
+
+bin/magento setup:upgrade

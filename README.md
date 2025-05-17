@@ -32,6 +32,14 @@ cd ddev-magento-demo
 ddev start 
 ```
 
+## Install Sample Data
+
+The sample data is already included in the project. You can install it by running the following command:
+
+```bash
+ddev install-sample-data
+```
+
 ## Change Magento Version
 
 The Magento version is defined in `MAGENTO_VERSION` variable in the `.ddev/config.yaml` project config file.

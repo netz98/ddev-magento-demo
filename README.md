@@ -24,6 +24,33 @@ See:
 - https://ddev.readthedocs.io/en/stable/#system-requirements
 - https://ddev.readthedocs.io/en/stable/#docker-installation
 
+## Setup Magento Respository Credentials
+
+To install Magento and its dependencies, you need to provide your Magento Marketplace authentication keys. This project is configured to read these credentials from global ddev environment variables.
+
+Please set the `MAGENTO_REPO_USERNAME` (Public Key) and `MAGENTO_REPO_PASSWORD` (Private Key) environment variables in your `~/.ddev/global_config.yaml` file.
+
+You can use the `ddev config global --web-environment-add` command:
+
+```bash
+ddev config global --web-environment-add MAGENTO_REPO_USERNAME=<public-key>
+ddev config global --web-environment-add MAGENTO_REPO_PASSWORD=<private-key>
+```
+
+Replace `<public-key>` and `<private-key>` with your actual Magento Marketplace credentials. You can obtain your keys from the Magento Marketplace website.
+
+More information on setting global environment variables in ddev can be found [here](https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#global-environment-variables).
+```
+
+To prevent rate limiting issues, it's recommended to set also the variable `GITHUB_TOKEN` with your GitHub token.
+
+```bash
+ddev config global --web-environment-add GITHUB_TOKEN=<your-github-token>
+```
+You can create a GitHub token in your GitHub account settings under Developer settings > Personal access tokens. Make sure to select the appropriate scopes for your token.
+
+This is helpful in all ddev projects, not only for Magento.
+
 ## Start the project
 
 ```bash
